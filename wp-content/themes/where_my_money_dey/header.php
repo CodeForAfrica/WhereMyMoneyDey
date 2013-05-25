@@ -17,11 +17,15 @@
 <!--[if lt IE 9]>
 <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
 <![endif]-->
-<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
+<!-- <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'> -->
 <link rel="stylesheet" href="wp-content/themes/where_my_money_dey/custom.css" />
 <script>
 function showDiv() {
    document.getElementById('testimony').style.display = "block";
+}
+
+function showPet() {
+	document.getElementById('call-to-action').style.display = "block";
 }
 </script>
 
