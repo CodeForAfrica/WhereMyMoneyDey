@@ -12,6 +12,10 @@
 
 	<footer id="colophon" class="site-footer footer" role="contentinfo">
 		<div class="wrap">
+			<div id="implementing-agent">
+				<p>Implementing Partner</p>
+				<a href="http://www.openinstitute.com" target="_blank"><img alt="Open Institute" src="http://localhost:8888/wordpress/wp-content/themes/databootcamps/images/openinstitute.jpg" /></a></br>
+			</div>
 		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->

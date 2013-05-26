@@ -72,16 +72,17 @@ body {
 	margin-top: 10px;
 }
 
-body#top-cont {
-	background: #FAFAFA !important;
-}
-
-#top-cont {
+#top-cont, #footer-cont {
 	-webkit-box-shadow: 1px 1px 3px 3px #999999;
 	box-shadow: 1px 1px 3px 3px #999999;
 }
 
-div#top-cont {
+#partner-logos {
+	-webkit-box-shadow: 1px 1px 4px 1px #999999;
+	box-shadow: 1px 1px 4px 1px #999999;
+}
+
+div#top-cont, div#footer-cont {
 	background: #FAFAFA !important;
 }
 
@@ -149,9 +150,8 @@ div.white-box {
 	-webkit-box-shadow: 1px 1px 1px 1px #E7E7E7;
 	box-shadow: 1px 1px 1px 1px #E7E7E7;
 	display: block;
-	margin-bottom: 10px;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 10px;
+	padding: 10px;
 }
 
 #overdue h1 {
@@ -168,7 +168,7 @@ div.white-box {
 /* Bottom Content ---------------------------- */
 
 
-body#bottom-cont {
+div#bottom-cont, div#partner-logos {
 	background: #FFFFFF !important;
 }
 
@@ -186,7 +186,7 @@ div.grey-box {
 
 .grey-box h1 {
 	font-size: 26px;
-	font-weight: normal;
+	font-weight: bold;
 }
 
 .column {
@@ -267,7 +267,7 @@ div.grey-box {
 }
 
 #citizen h1 {
-    font-family: 'destroy' !important;
+    font-family: 'Destroy' !important;
     font-size: 50px;
     margin-bottom: 30px;
     margin-top: -59px;
@@ -395,4 +395,175 @@ hr {
 	height: 38px; width: 140px;
 	margin: 4px;
 	text-shadow: none !important;
+}
+
+.team-photos, .team-photos li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.team-photos {
+	clear: both;
+    margin: 0 auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 80%;
+}
+
+.team-photos li {
+	display: inline;
+    float: left;
+    height: 140px;
+    margin: 20px;
+    width: 140px;
+}
+
+.team-photos li a img {
+	border: 8px #FBBF31 solid;
+	border-radius: 50%;
+    height: 140px;
+    opacity: 0.7;
+    width: 140px;
+}
+
+.team-photos li a:hover img {
+    opacity: 1;
+}
+
+.team-photos li a {
+    display: block;
+    position: relative;
+}
+
+.team-photos li a:after {
+	background-color: rgba(238,238,238, 0.9);
+	background-attachment: scroll;
+	border-radius: 140px;
+    box-shadow: 0 0 0 1px rgba(255,215,0, 1), 0 0 0 1px rgba(255,215,0, 1) inset;
+    color: #666666;
+    content: attr(title);
+    display: block;
+    font-size: 8pt;
+    font-weight: bold;
+    height: 80px;
+    opacity: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 60px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: 8px;
+    left: 8px;
+    width: 140px;
+}
+
+.team-photos li a:after {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+}
+.team-photos li a:hover:after {
+    opacity: 1;
+}
+.team-photos li a img, .team-photos li a:hover img {
+    transition-delay: 0s;
+    transition-duration: 0.3s;
+    transition-property: all;
+    transition-timing-function: ease-out;
+}
+
+#statement {
+    padding-bottom: 30px;
+    border-bottom: 1px #FBBF31 solid;
+}
+
+#statement h2 {
+	font-size: 20px;	
+}
+
+#statement h2 span {
+	color: #CF3623;
+	font-weight: bold;
+}
+
+#advisory {
+    padding-top: 30px;
+}
+
+#advisory h2 {
+	font-size: 20px;
+}
+
+#advisory h2 span {
+	font-family: 'Destroy' !important;
+}
+
+#invitation div {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#invitation h1 {
+    color: #CF3623;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+#invitation p {
+    color: #999999;
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#invitation button {
+	background: #FBBF31;
+	border: none;
+	border-radius: 5px;
+	-webkit-box-shadow: 1px 1px 1px 1px #FAFAFA;
+	box-shadow: 1px 1px 1px 1px #FAFAFA;
+	color: #fff;
+	font-size: 20px;
+	font-weight: bold;
+	height: 48px; width: 200px;
+	margin: 4px;
+	text-shadow: none !important;
+}
+
+#invitation a {
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#partners h1 {
+	font-size: 40px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#partners img {
+	max-height: 80px;
+	margin: 4px;
+}
+
+#implementing-agent {
+	float: right;
+}
+
+#implementing-agent img {
+	float: left;
+	height: 50px;
+	margin-bottom: 5px;
+}
+
+#implementing-agent p {
+	color: #999999;
+	font-size: 11px;
+    margin-bottom: 0;
+    text-align: center;
 }

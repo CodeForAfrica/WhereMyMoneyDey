@@ -17,7 +17,7 @@ $district_handle = fopen("wp-content/themes/where_my_money_dey/data/district.csv
 			if ($selectedDistrict == $district_row[$i][0]){
 				$DamountD = $district_row[$i][13];	// the total amount due in the corresponding district
 				$DamountR = $district_row[$i][14]; // the total amount received in the corresponding district
-				$Doverdue = $district_row[$i][15];
+				$Doverdue = $district_row[$i][15];	// amount overdue in the district
 			}
 
 		$district_dropdown .= '<option value="'.$district_row[$i][0].'">'. $district_row[$i][0]. '</option>';
@@ -39,7 +39,7 @@ $region_handle = fopen("wp-content/themes/where_my_money_dey/data/ashanti.csv", 
 	$region_row = fgetcsv($region_handle, 1024); 
 	$RamountD = $region_row[0];	// total amount due in the Ashanti region
 	$RamountR = $region_row[1]; // total amount received in the Ashanti region
-	$Roverdue = $region_row[2]; 
+	$Roverdue = $region_row[2]; // amount overdue in the Ashanti region
 
 	} 
 
@@ -61,8 +61,8 @@ $population_handle = fopen("wp-content/themes/where_my_money_dey/data/ghana_popu
 		}
 
 		if ($population_row[$j][0] == "Ashanti") {
-			$ashanti_population = $population_row[$j][3];
-			$area_size = $population_row[$j][2];
+			$ashanti_population = $population_row[$j][3];	// population size of the region
+			$area_size = $population_row[$j][2];	// size of the region
 		}
 
 		$j++;
