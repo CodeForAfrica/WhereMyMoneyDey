@@ -214,14 +214,18 @@ get_header(); ?>
 					</section>
 
 					<section id="company-payments" class="column">
-
-						<div id="distribution-map" class="grey-box">
-							<h1>Distribution of funds:</h1>
-							<div style="width:100%!important">
-								<?php map();?>
+						
+						<div class="two-rows">
+							<div id="distribution-map" class="grey-box">
+								<h1>Distribution of funds:</h1>
+								<div style="width:100%!important">
+									<?php map();?>
+								</div>
+							</div>
+							<div id="chart" class="grey-box">
+								<h1>Who's paid what:</h1>
 							</div>
 						</div>
-
 						<div id="region-overview" class="grey-box">
 							<h1>Know your region</h1>
 							<h1><span>Ashanti:<span></h1>

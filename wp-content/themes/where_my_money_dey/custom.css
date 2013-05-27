@@ -203,11 +203,12 @@ div.grey-box {
 }
 
 .two-rows {
-	display: inline-block;
+	display: block;
 	margin-left: 0;
 }
 
 .two-rows div {
+	padding: 0 !important;
 	width: 100%;
 }
 
@@ -261,8 +262,8 @@ div.grey-box {
 	vertical-align: middle;
 }
 
-#distribution-map {
-	width: 330px;
+#distribution-map div {
+	margin-left: -13px;
 }
 
 #testimony.column div {
