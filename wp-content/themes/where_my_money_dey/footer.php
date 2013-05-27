@@ -14,7 +14,7 @@
 		<div class="wrap">
 			<div id="implementing-agent">
 				<p>Implementing Partner</p>
-				<a href="http://www.openinstitute.com" target="_blank"><img alt="Open Institute" src="wp-content/themes/where_my_money_dey/images/openinstitute.jpg" /></a></br>
+				<a href="http://www.openinstitute.com" target="_blank"><img alt="Open Institute" src="wp-content/themes/where_my_money_dey/images/openinstitute.png" /></a></br>
 			</div>
 		</div>
 	</footer><!-- #colophon -->

@@ -215,6 +215,10 @@ div.grey-box {
 	width: 90% !important;
 }
 
+#region-overview h1 span {
+	font-weight: normal;
+}
+
 #region-overview div {
     width: 90% !important;
 }

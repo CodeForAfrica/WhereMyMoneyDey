@@ -172,7 +172,7 @@ get_header(); ?>
 										<input type="text" id="email_s" placeholder="Email address">
 										<input value="sign" type="submit" onclick="myCall2()" id="submit_s">
 										<div id="mybox2">
-										Alternatively send "Sign, save the wetlands, your message" to 0770494078
+										Alternatively send "Sign, save the wetlands, your message" to +254770494078
 										</div>
 									</p>
 								</div><!-- #petition -->
@@ -223,7 +223,7 @@ get_header(); ?>
 						</div>
 
 						<div id="region-overview" class="grey-box">
-							<h1>REGION OVERVIEW</h1>
+							<h1>Know your region</h1>
 							<h1><span>Ashanti:<span></h1>
 							<div id="region-stats" >
 								<div class="white-box">
@@ -365,7 +365,7 @@ get_header(); ?>
 								We are inviting Civil Society Organisations and grassroots citizen groups to formally partner with us, 
 								to help incorporate new data and build out additional functionality.
 							</p>
-							<button><a href="mailto:anne@openinstitute.com?subject=Collaborating with Where My Money Dey?">Get in touch</a></button>
+							<button><a href="mailto:anne@openinstitute.com">Get in touch</a></button>
 						</div>
 					</section>
 				</div>
@@ -375,10 +375,10 @@ get_header(); ?>
 				<div class="site-content wrap" role="main">
 					<section id="partners">
 						<div>
-							<img src="wp-content/themes/where_my_money_dey/images/c4a.png" />
-							<img src="wp-content/themes/where_my_money_dey/images/anic.png" />
-							<img src="wp-content/themes/where_my_money_dey/images/wbi-hires.png" />
-							<img src="wp-content/themes/where_my_money_dey/images/ami-logo.png" />
+							<a href="http://code-africa.org/" target="_blank"><img src="wp-content/themes/where_my_money_dey/images/c4a.png" /></a>
+							<a href="http://africannewschallenge.org/" target="_blank"><img src="wp-content/themes/where_my_money_dey/images/anic.png" /></a>
+							<a href="http://wbi.worldbank.org/"><img src="wp-content/themes/where_my_money_dey/images/wbi-hires.png" /></a>
+							<a href="http://africanmediainitiative.org/"><img style="height: 100px !important" src="wp-content/themes/where_my_money_dey/images/ami-logo.png" /></a>
 						</div>
 					</section>
 				</div>
