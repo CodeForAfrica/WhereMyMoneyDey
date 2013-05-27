@@ -25,8 +25,8 @@ function showDiv() {
    document.getElementById('testimony').style.display = "block";
 }
 
-function showPet() {
-	document.getElementById('call-to-action').style.display = "block";
+function showRegionStats() {
+	document.getElementById('region-statistics').style.display = "block";
 }
 </script>
 

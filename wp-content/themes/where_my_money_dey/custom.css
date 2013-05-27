@@ -72,18 +72,17 @@ body {
 	margin-top: 10px;
 }
 
-#top-cont, #footer-cont {
-	-webkit-box-shadow: 1px 1px 3px 3px #999999;
-	box-shadow: 1px 1px 3px 3px #999999;
-}
-
-#partner-logos {
+#top-cont, #footer-cont, #bottom-cont, #partner-logos {
 	-webkit-box-shadow: 1px 1px 4px 1px #999999;
 	box-shadow: 1px 1px 4px 1px #999999;
 }
 
-div#top-cont, div#footer-cont {
+div#top-cont {
 	background: #FAFAFA !important;
+}
+
+div#footer-cont {
+	background: #E7E7E7 !important;
 }
 
 section {
@@ -132,6 +131,7 @@ div.white-box {
 
 #royalties h1 {
 	color: #CF3623;
+	text-transform: uppercase;
 }
 
 #royalties h1 span {
@@ -233,8 +233,7 @@ div.grey-box {
 	font-size: 18px;
 }
 
-
-#region-stats .white-box li {
+#companies li {
 	font-size: 13px;	
 	list-style: none;
 }
@@ -244,11 +243,25 @@ div.grey-box {
 }
 
 .industry-container {
-    max-width: 20%;
+    max-width: 138px;
 }
 
 .industry img {
-	max-width: 60px !important;
+	max-width: 75px !important;
+}
+
+#services button {
+	background: #D1D1D1;
+	border: none;
+	border-radius: 5px;
+	-webkit-box-shadow: 1px 1px 1px 1px #E7E7E7;
+	box-shadow: 1px 1px 1px 1px #E7E7E7;
+	color: #000;
+	font-size: 20px;
+	font-weight: bold;
+	height: 48px; width: 220px;
+	margin: 4px;
+	text-shadow: none !important;
 }
 
 .facilities h2 {
@@ -258,12 +271,24 @@ div.grey-box {
 	font-weight: bold;
 }
 
+.facilities p {
+	font-size: 15px;
+}
+
+.call-to-action {
+	display: none;
+}
+
 #company-payments div {
-	vertical-align: middle;
+	vertical-align: top;
 }
 
 #distribution-map div {
-	margin-left: -13px;
+	width: 272px;
+}
+
+.leaflet-right .leaflet-control {
+	width: 150px !important;
 }
 
 #testimony.column div {
@@ -317,11 +342,11 @@ div.grey-box {
 
 
 #stories div {
-    vertical-align: middle;
+    vertical-align: top;
 }
 
 .name {
-    vertical-align: top
+    vertical-align: top;
 }
 
 .name h2 {
@@ -332,11 +357,18 @@ div.grey-box {
     font-weight: normal;
 }
 
+div.profile {
+	width: 100%;
+}
+
+div.background {
+	width: 100%;
+}
+
 .background p {
     font-size: 16px;
     margin-bottom: 5px;
 }
-
 
 hr {
     margin-bottom: 5px !important;
@@ -349,6 +381,10 @@ hr {
 .evidence img {
    height: 100px;
    max-width: 40%;
+}
+
+div.evidence {
+	width: 100%;
 }
 
 #prompt button {
@@ -400,6 +436,18 @@ hr {
 	height: 38px; width: 140px;
 	margin: 4px;
 	text-shadow: none !important;
+}
+
+#footer-cont p {
+	color: #666666;
+	font-size: 18px;
+	margin-bottom: 0;
+}
+
+
+#footer-cont section {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .team-photos, .team-photos li {
@@ -480,8 +528,7 @@ hr {
     transition-timing-function: ease-out;
 }
 
-#statement {
-    padding-bottom: 30px;
+#statement, #advisory, #code {
     border-bottom: 1px #FBBF31 solid;
 }
 
@@ -494,34 +541,29 @@ hr {
 	font-weight: bold;
 }
 
-#advisory {
-    padding-top: 30px;
-}
-
 #advisory h2 {
 	font-size: 20px;
 }
 
-#advisory h2 span {
+#advisory span, #code span {
+	color: #333333;
 	font-family: 'Destroy' !important;
 }
 
-#invitation div {
-	margin-top: 15px;
-	margin-bottom: 15px;
+#advisory img {
+	height: 60px;
 }
 
-#invitation h1 {
-    color: #CF3623;
+#code h1 {
+    color: #333333;
     font-size: 32px;
     font-weight: bold;
 }
 
 #invitation p {
-    color: #999999;
-    font-family: 'Roboto', sans-serif !important;
-    font-size: 18px;
-    margin-bottom: 10px;
+    color: #CF3623;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 #invitation button {
@@ -546,14 +588,22 @@ hr {
 }
 
 #partners h1 {
-	font-size: 40px;
+	font-size: 24px;
 	font-weight: bold;
-	text-transform: uppercase;
+}
+
+#partners h2 {
+	color: #999999;
+	font-size: 18px;
 }
 
 #partners img {
 	max-height: 80px;
 	margin: 4px;
+}
+
+.capacity-partners img {
+	max-height: 60px !important;
 }
 
 #implementing-agent {
@@ -566,7 +616,7 @@ hr {
 	margin-bottom: 5px;
 }
 
-#implementing-agent p {
+.footer p {
 	color: #999999;
 	font-size: 11px;
     margin-bottom: 0;

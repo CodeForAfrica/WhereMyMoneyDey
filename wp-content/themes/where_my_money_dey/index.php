@@ -33,11 +33,11 @@ get_header(); ?>
 
 					<section id="royalties" class="column">
 						<div class="white-box">
-							<h1>Royalties <span>owed</span></h1>
+							<h1>Royalties <span>Owed</span></h1>
 							<span class="amount"><?php echo "¢ ".$amountDue; ?></span>
 						</div>
 						<div class="white-box">
-							<h1>Royalties <span>paid</span></h1>
+							<h1>Royalties <span>Paid</span></h1>
 							<span class="amount"><?php echo "¢ ".$amountReceived; ?></span>
 						</div>
 					</section>
@@ -66,6 +66,7 @@ get_header(); ?>
 									</div>
 									<div class="facilities">
 										<h2>0</h2>
+										<p>Schools or Universities were built</p>
 									</div>
 								</div>
 								<div class="industry-container">
@@ -75,6 +76,7 @@ get_header(); ?>
 									</div>
 									<div class="facilities">
 										<h2>0</h2>
+										<p>Clinics or Hospitals were built</p>
 									</div>
 								</div>
 								<div class="industry-container">
@@ -84,6 +86,7 @@ get_header(); ?>
 									</div>
 									<div class="facilities">
 										<h2>0</h2>
+										<p>Water or Sewerage schemes were built</p>
 									</div>
 								</div>
 								<div class="industry-container">
@@ -93,6 +96,7 @@ get_header(); ?>
 									</div>
 									<div class="facilities">
 										<h2>0</h2>
+										<p>Roads or Bridges were built</p>
 									</div>
 								</div>
 							</div>
@@ -101,9 +105,7 @@ get_header(); ?>
 
 					<section id="action" class="column full">
 						<div id="citizen" class="grey-box">
-							<h2>3% of the revenues generated should go back to local residents</h2>
 							<img src="wp-content/themes/where_my_money_dey/images/fist-icon.png" />
-							
 							<h1>actNOW</h1>
 							<button>
 								<a class="fancybox" href="#petition1" title="Sign a petition">Petition</a>
@@ -213,51 +215,14 @@ get_header(); ?>
 						</div>	
 					</section>
 
-					<section id="company-payments" class="column">
-						
-						<div class="two-rows">
-							<div id="distribution-map" class="grey-box">
-								<h1>Distribution of funds:</h1>
-								<div style="width:100%!important">
-									<?php map();?>
-								</div>
-							</div>
-							<div id="chart" class="grey-box">
-								<h1>Who's paid what:</h1>
-							</div>
-						</div>
-						<div id="region-overview" class="grey-box">
-							<h1>Know your region</h1>
-							<h1><span>Ashanti:<span></h1>
-							<div id="region-stats" >
-								<div class="white-box">
-									<h1>Total Population</h1>
-									<h2><span><?php echo $ashanti_population; ?></span></h2>
-								</div>
-								<div class="white-box">
-									<h1>Area (in sq. km)</h1>
-									<h2><span><?php echo $area_size; ?></span></h2>
-								</div>
-								<div class="white-box">
-									<h1>Companies that mine in this area:</h1>
-									<li>Anglogold Ashanti</li>
-									<li>Ashanti Goldfields</li>
-									<li>Ekpeme Mining & Trading</li>
-									<li>Sirius Mining Co Ltd</li>
-									<li>Akrokeri-Ashanti Gold Mines</li>
-								</div>
-							</div>
-						</div>				
-					</section><!-- #company-payments -->
-
 					<div class="column full">
 						<div class="grey-box">
-							<h1>Stories from the ground:</h1>
+							<h1>Your Stories:</h1>
 						</div>
 					</div>
 					<section id="stories" class="column">
 						<div class="feature grey-box">
-							<div class="profile" style="width:100%">
+							<div class="profile">
 								<div>
 									<img src="wp-content/themes/where_my_money_dey/images/abeeku.png" />
 								</div>
@@ -266,7 +231,7 @@ get_header(); ?>
 									<h3><em>Central Ghana</em></h3>
 								</div>
 							</div>
-							<div class="background"  style="width:100%">
+							<div class="background">
 								<p> 
 									They also presented a workshop on launching small businesses, sharing methods 
 									of making candles using recycled materials such as church candles, milk cartons 
@@ -274,7 +239,7 @@ get_header(); ?>
 								</p>
 							</div>
 							<hr />
-							<div class="evidence" style="width:100%">
+							<div class="evidence">
 								<h2>Mining company destroys wetlands</h2>
 								<img src="wp-content/themes/where_my_money_dey/images/market.jpg" />
 								<img src="wp-content/themes/where_my_money_dey/images/swamp-2.jpg" />
@@ -285,7 +250,7 @@ get_header(); ?>
 							</div>
 						</div>
 						<div class="grey-box">
-							<div class="profile" style="width:100%">
+							<div class="profile">
 								<div>
 									<img src="wp-content/themes/where_my_money_dey/images/boah.png" />
 								</div>
@@ -294,7 +259,7 @@ get_header(); ?>
 									<h3><em>Ashanti, Ghana</em></h3>
 								</div>
 							</div>
-							<div class="background"  style="width:100%">
+							<div class="background">
 								<p> 
 									Las Lomas and other communities that pursued partnerships with local, state
 									and federal agencies are viewed as models of progress. But living conditions 
@@ -303,7 +268,7 @@ get_header(); ?>
 								</p>
 							</div>
 							<hr />
-							<div class="evidence" style="width:100%">
+							<div class="evidence">
 								<h2>Our resurfaced street</h2>
 								<img src="wp-content/themes/where_my_money_dey/images/town.jpg" />
 								<img src="wp-content/themes/where_my_money_dey/images/typical-paved.jpg" />
@@ -325,6 +290,69 @@ get_header(); ?>
 							<?php include 'form.php'; ?>
 						</div>
 					</section>
+
+					<div class="column full">
+						<div class="grey-box">
+							<h1>What The Numbers Tell Us:</h1>
+						</div>
+					</div>
+
+					<section id="company-payments" class="column">
+						<div id="distribution-map" class="grey-box">
+							<h1>Who Gets What:</h1>
+							<div style="width:100%!important">
+								<?php map();?>
+							</div>
+						</div>
+						<div id="region-overview" class="grey-box">
+							<h1>Who Lives There</h1>
+							<form method="get">
+								<select name="region-name">
+									<option value="Ghana">Ghana</option>
+									<option value="Ashanti" selected="selected">Ashanti</option>
+									<option value="Western">Western</option>
+									<option value="Central">Central</option>
+									<option value="Greater Accra">Greater Accra</option>
+									<option value="Volta">Volta</option>
+									<option value="Eastern">Eastern</option>
+									<option value="Brong Ahafo">Brong Ahafo</option>
+									<option value="Northern">Northern</option>
+									<option value="Upper East">Upper East</option>
+									<option value="Upper West">Upper West</option>
+								</select>
+								<button type="submit">GO</button>
+							</form>
+							<br />
+							<h1><span><?php echo $selectedRegion.":"; ?></span></h1>
+							<div id="region-stats" >
+								<div class="white-box">
+									<h1>Total Population</h1>
+									<h2><span><?php echo $region_population; ?></span></h2>
+								</div>
+								<div class="white-box">
+									<h1>Area (in sq. km)</h1>
+									<h2><span><?php echo $area_size; ?></span></h2>
+								</div>
+								<div class="white-box">
+									<h1>Infant Mortality Rate (2008)</h1>
+									<h2><span><?php echo $infant_rate; ?></span></h2>
+								</div>
+								<div class="white-box">
+									<h1>Under Five Mortality Rate (2008)</h1>
+									<h2><span><?php echo $underfive_rate; ?></span></h2>
+								</div>
+							</div>
+						</div>				
+					</section><!-- #company-payments -->
+
+					<div class="column full">
+						<div id="companies" class="grey-box">
+							<h1>Which Companies Are Active Here:</h1>	
+							<?php echo $active_companies; ?>
+						</div>
+					</div>
+
+					
 				</div>
 			</div><!-- #bottom-cont -->
 
@@ -337,52 +365,67 @@ get_header(); ?>
 							<li><a title="Team Member"><img src="wp-content/themes/where_my_money_dey/images/user.png" /></a></li>
 							<li><a title="Team Member"><img src="wp-content/themes/where_my_money_dey/images/user.png" /></a></li>
 						</div>
-
 					</section>
 					
 					<section id="statement">
 						<div>
-							<h2>
-								Where My Money Dey? is a <span>citizen-built</span> accountability technology, designed 
-								to promote civic engagement and <span>active citizenry</span>.
-								Prototyped at Ghana's first ever <a href="http://ghana.databootcamp.org" target="_blank">d|bootcamp</a> 
-								in 2012, it was further developed by the <a href="http://code-africa.org/" target="_blank">Code for Africa</a> initiative.
-							</h2>
+							<p>
+								Where My Money Dey? is a volunteer-built project designed to improve public accountability and civic engagement 
+								through active citizenry. The prototype was built at Ghana's first ever <a href="http://ghana.databootcamp.org" target="_blank">d|Bootcamp</a> 
+								journalists and hacktivists in October 2012. A 2nd iteration was refined at a follow-up d|Bootcamp in May 2013 
+								with help from the <a href="http://code-africa.org/" target="_blank">Code for Africa</a> initiative.
+							</p>
 						</div>
 					</section>
 
 					<section id="advisory">
 						<div>
-							<h2> 
-								<span>actNOW!</span> is a standalone project to help citizens make their voices heard, by helping
-								them to proactively engage with government, corporates and others in positions of power on issues of public 
-								interest.<br /> 
-								<span>actNOW!</span> is the recipient of an ANIC grant.
-							</h2>
+							<p> 
+								<span>actNOW!</span> is a standalone project that helps citizens make their voices heard on issues 
+								of public interest, by helping them to engage proactively with leaders in government, corporates, and others in 
+								positions of power. <br />
+								<span>actNow!</span> is one of 20 recipients of seed grants in 2012 from the African News Innovation Challenge. <br />
+								<a href="http://africannewschallenge.org/" target="_blank"><img src="wp-content/themes/where_my_money_dey/images/anic.png" /></a>	
+							</p>
 						</div>
 					</section>
 
-					<section id="invitation" class="column full">
-						<div class="white-box">
-							<h1>Partner with us!</h1>
-							<p>
-								We are inviting Civil Society Organisations and grassroots citizen groups to formally partner with us, 
-								to help incorporate new data and build out additional functionality.
-							</p>
-							<button><a href="mailto:anne@openinstitute.com">Get in touch</a></button>
+					<section id="code">
+						<h1>Steal Our Code</h1>
+						<p>
+							The code for both Where My Money Dey? and <span>actNOW</span> is open source. This means that you can use our code to build your own projects, 
+							without any license cost or usage fees. You can find the code for both these projects, plus other African-built transparency 
+							technologies, on our umbrella repository at Github.
+						</p>
+						<div id="github">
+							<a href="https://github.com/CodeForAfrica" target="_blank"><img alt="Get the code!" src="wp-content/themes/where_my_money_dey/images/GitHub-Mark-64px.png" /></a></br>
 						</div>
 					</section>
+
+					<section id="invitation">
+						<p>Still stumped? If your grassroots community or social justice organisation doesn't have the technical capacity to use the code itself, we might still be able to help. 
+						Give us a shout to see if we can connect you with local hacktivists.</p>
+					</section
+				</div>
 				</div>
 			</div><!-- #footer-cont -->
 
 			<div id="partner-logos">
 				<div class="site-content wrap" role="main">
 					<section id="partners">
-						<div>
-							<a href="http://code-africa.org/" target="_blank"><img src="wp-content/themes/where_my_money_dey/images/c4a.png" /></a>
-							<a href="http://africannewschallenge.org/" target="_blank"><img src="wp-content/themes/where_my_money_dey/images/anic.png" /></a>
-							<a href="http://wbi.worldbank.org/"><img src="wp-content/themes/where_my_money_dey/images/wbi-hires.png" /></a>
+						<div class="main-partners">
+							<h1>Made Possible By</h1>
 							<a href="http://africanmediainitiative.org/"><img style="height: 100px !important" src="wp-content/themes/where_my_money_dey/images/ami-logo.png" /></a>
+							<a href="http://wbi.worldbank.org/"><img src="wp-content/themes/where_my_money_dey/images/wbi-hires.png" /></a>
+							<a href="http://code-africa.org/"><img src="wp-content/themes/where_my_money_dey/images/c4a.png" /></a>
+							<a href="http://africannewschallenge.org/"><img src="wp-content/themes/where_my_money_dey/images/anic.png" /></a>
+						</div>
+
+						<div class="capacity-partners">
+							<h2>Capacity Partners</h2>
+							<a href="https://groups.google.com/forum/?hl=en&fromgroups#!forum/hackshackers-ghana"><img src="wp-content/themes/where_my_money_dey/images/accra_side.gif" /></a>
+							<a href="http://www.icfj.org/"><img src="wp-content/themes/where_my_money_dey/images/icfj.png" /></a>
+							<a href="http://openinstitute.com/"><img src="wp-content/themes/where_my_money_dey/images/openinstitute.png" /></a>
 						</div>
 					</section>
 				</div>
