@@ -102,25 +102,91 @@ get_header(); ?>
 							</div>
 						</div>
 					</section>
+					<style type="text/css">
+div#petition-popup, div#connect-popup, div#updates-popup, div#share-popup {
+	display: none;
+	position: absolute;
+	max-width: 200px;
+	padding: 10px;
+	background: #fff;
+	font-size: 12px;
+}	
+</style>
 
+<script>
+$(function() {
+  $('a#petition-trigger').hover(function() {
+    $('div#petition-popup').show();
+    }, function() {
+    $('div#petition-popup').hide();
+  });
+});
+$(function() {
+  $('a#connect-trigger').hover(function() {
+    $('div#connect-popup').show();
+    }, function() {
+    $('div#connect-popup').hide();
+  });
+});
+$(function() {
+  $('a#updates-trigger').hover(function() {
+    $('div#updates-popup').show();
+    }, function() {
+    $('div#updates-popup').hide();
+  });
+});
+$(function() {
+  $('a#share-trigger').hover(function() {
+    $('div#share-popup').show();
+    }, function() {
+    $('div#share-popup').hide();
+  });
+});
+</script>
 					<section id="action" class="column full">
 						<div id="citizen" class="grey-box">
 							<img src="wp-content/themes/where_my_money_dey/images/fist-icon.png" />
 							<h1>actNOW!</h1>
 							<button>
-								<a class="fancybox petition-trigger" href="#petition1" title="Sign a petition">Petition</a>
+								<a class="fancybox" id="petition-trigger" href="#petition1" title="Sign a petition">Petition</a>
+								<div id="petition-popup">
+	<h2>Petition</h2>
+	<p>Do you disagree with the impact extractive companies are having on your community, 
+		or how the royalties for your community are being used? Do something positive about it. <br /> 
+		Sign a petition to demand change.
+	</p>
+</div>
 							</button>
 
 							<button>
 								<a id="connect-trigger" class="fancybox" href="#community1" title="Connect to your community">Connect</a>
+								<div id="connect-popup">
+	<h2>Connect</h2>
+	<p>Do you want to get involved in creating a better tomorrow for your community? 
+		Collective action will amplify your efforts. Find others in your community or wider world who also want 
+		to do something positive.
+	</p>
+</div>
 							</button>
 
 							<button>
 								<a id="updates-trigger" class="fancybox" href="#update1" title="Update me on this">Updates</a>
+								<div id="updates-popup">
+	<h2>Updates</h2>
+	<p>Want to be kept informed about any new developments about mining royalties relating to your community? 
+		Sign-up here for SMS or email alerts about new payments, campaigns, or mining company activities.
+	</p>
+</div>
 							</button>
 
 							<button>
 								<a id="share-trigger" class="fancybox" href="#share1" title="Share">Share</a>
+								<div id="share-popup">
+	<h2>Share</h2>
+	<p>Why do it alone? Help spread the word about how extractive industries are impacting on your world. 
+		The more people who shine a light on the issues, the quicker everyone will understand what's important.
+	</p>
+</div>
 							</button>
 
 						   	<script>                          
