@@ -98,7 +98,7 @@ function map(){
 		</script>
 		<script type="text/javascript">
 	
-			var map = L.map('map').setView([6.2, -1.50], 9);
+			var map = L.map('map').setView([6.2, -1.56], 9);
 			var googleLayer = new L.Google('ROADMAP');
 			//map.addLayer(googleLayer);
 				// control that shows state info on hover

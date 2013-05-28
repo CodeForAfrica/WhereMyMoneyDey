@@ -20,13 +20,10 @@
 <![endif]-->
 <!-- <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'> -->
 <link rel="stylesheet" href="wp-content/themes/where_my_money_dey/custom.css" />
+
 <script>
 function showDiv() {
    document.getElementById('testimony').style.display = "block";
-}
-
-function showRegionStats() {
-	document.getElementById('region-statistics').style.display = "block";
 }
 </script>
 

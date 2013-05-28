@@ -2,11 +2,15 @@
 
 $selectedDistrict = $_GET["district"];
 $district_name = $selectedDistrict." District";
-if(!isset($_GET['region-name'])){
+
+if(!isset($_GET['region-name']) ) {
 	$selectedRegion = "Ashanti";
-}else{
-$selectedRegion = $_GET["region-name"];
 }
+else {
+	$selectedRegion = $_GET["region-name"];
+}
+
+
 // Open our file containing the district data
 $district_handle = fopen("wp-content/themes/where_my_money_dey/data/district.csv", "r");
 
