@@ -100,7 +100,7 @@ function map(){
 	
 				//var map = L.map('map').setView([6.2, -1.50], 9);
 			var map = L.map('map', {
-				center: new L.LatLng(6.2, -1.50),
+				center: new L.LatLng(6.2, -1.57),
 				dragging: false,
 				scrollWheelZoom: false,
 				touchZoom: false,
