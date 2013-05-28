@@ -98,8 +98,15 @@ function map(){
 		</script>
 		<script type="text/javascript">
 	
-			var map = L.map('map').setView([6.2, -1.56], 9);
-			var googleLayer = new L.Google('ROADMAP');
+				//var map = L.map('map').setView([6.2, -1.50], 9);
+			var map = L.map('map', {
+				center: new L.LatLng(6.2, -1.50),
+				dragging: false,
+				scrollWheelZoom: false,
+				touchZoom: false,
+				zoom: 9
+			});
+			//var googleLayer = new L.Google('ROADMAP');
 			//map.addLayer(googleLayer);
 				// control that shows state info on hover
 			var info = L.control();
@@ -124,13 +131,13 @@ function map(){
 
 			// get color depending on population density value
 			function getColor(d) {
-			return d > 150000 ? '#000000' :
-			       d > 125000 ? '#BD0026' :
-			       d > 100000  ? '#FC4E2A' :
-			       d > 50000   ? '#FD8D3C' :
-			       d > 25000   ? '#FEB24C' :
-			       d > 10000   ? '#FED976' :
-			                  '#FFEDA0';
+			return d > 150000 ? '#3b0000' :
+			       d > 125000 ? '#790202' :
+			       d > 100000  ? '#b30202' :
+			       d > 50000   ? '#e00303' :
+			       d > 25000   ? '#fd4a4a' :
+			       d > 10000   ? '#fbe9e9' :
+			                  '#fbe9e9';
 		}
 	
 			function style(feature) {
