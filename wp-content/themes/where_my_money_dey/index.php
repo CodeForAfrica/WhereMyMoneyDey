@@ -255,6 +255,7 @@ $(function() {
 									<input type="text" id="email_p">
 									<input type="submit" onclick="myCall()" id="submit_p">
 									<div id="mybox"></div>
+								Alternatively send "Subscribe, save the wetlands" to +254770494078
 								</p>
 							</div>
 							<div id="community1" style="width:400px;display: none;">
