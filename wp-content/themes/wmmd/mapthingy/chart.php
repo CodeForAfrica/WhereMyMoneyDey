@@ -1,12 +1,11 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <?php
 
-$link = mysql_connect("mysql.labs.openinstitute.com", "anne_oi", "anne@oi") or die("Could not connect");
-mysql_select_db("wheremymoneydey", $link);
+$link = mysqli_connect("mysql.labs.openinstitute.com", "anne_oi", "anne@oi", "wheremymoneydey") or die("Could not connect");
 $region = $_GET['region'];
 
-$sql = mysql_query("SELECT * FROM amounts WHERE id='$region'");
-$row = mysql_fetch_array($sql);
+$sql = mysqli_query($link, "SELECT * FROM amounts WHERE id='$region'");
+$row = mysqli_fetch_array($sql);
 
 $year_amounts = array();
 for($i=2006;$i<2012;$i++){

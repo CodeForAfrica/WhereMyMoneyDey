@@ -1,7 +1,8 @@
+/* global ajaxurl */
 (function($) {
 	$(document).ready(function() {
-		var bgImage = $("#custom-background-image"),
-			frame;
+		var frame,
+			bgImage = $( '#custom-background-image' );
 
 		$('#background-color').wpColorPicker({
 			change: function( event, ui ) {
@@ -55,11 +56,13 @@
 			frame.on( 'select', function() {
 				// Grab the selected attachment.
 				var attachment = frame.state().get('selection').first();
+				var nonceValue = $( '#_wpnonce' ).val() || '';
 
 				// Run an AJAX request to set the background image.
 				$.post( ajaxurl, {
 					action: 'set-background-image',
 					attachment_id: attachment.id,
+					_ajax_nonce: nonceValue,
 					size: 'full'
 				}).done( function() {
 					// When the request completes, reload the window.

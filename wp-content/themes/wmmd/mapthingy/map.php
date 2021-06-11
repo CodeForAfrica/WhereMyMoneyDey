@@ -15,12 +15,13 @@
 			$year = $_GET['year'];
 		}
 		
+		global $wpdb;
 		print 'var amountR ={
 		"type": "FeatureCollection",                                                                      
 		"features": [';
 		$data2 = array();
-		$sql = mysql_query("SELECT * FROM regions LEFT JOIN amounts ON regions.id=amounts.id");
-		while($row=mysql_fetch_array($sql)){
+		$sql = mysqli_query($wpdb->dbh, "SELECT * FROM regions LEFT JOIN amounts ON regions.id=amounts.id");
+		while($row=mysqli_fetch_array($sql)){
 			$amountr = $year.'r';
 			$total = $row[$amountr];
 			$data2[]= '{ "type": "Feature", "id": '.$row['id'].', "properties": {"OBJECTID": '.$row['id'].', "EDNAME": "'.$row['district'].'", "TOTAL": '.$total.'}, "geometry": { "type": "Polygon", "coordinates": [['.$row['polygon'].']]}}';	
@@ -34,8 +35,8 @@
 		"type": "FeatureCollection",                                                                      
 		"features": [';
 		$data2 = array();
-		$sql = mysql_query("SELECT * FROM regions LEFT JOIN amounts ON regions.id=amounts.id");
-		while($row=mysql_fetch_array($sql)){
+		$sql = mysqli_query($wpdb->dbh, "SELECT * FROM regions LEFT JOIN amounts ON regions.id=amounts.id");
+		while($row=mysqli_fetch_array($sql)){
 			$amountd = $year.'d';
 			$total = $row[$amountd];
 			$data2[]= '{ "type": "Feature", "id": '.$row['id'].', "properties": {"OBJECTID": '.$row['id'].', "EDNAME": "'.$row['district'].'", "TOTAL": '.$total.'}, "geometry": { "type": "Polygon", "coordinates": [['.$row['polygon'].']]}}';	

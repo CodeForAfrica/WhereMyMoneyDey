@@ -1,9 +1,10 @@
 <?php
 	
 	$region = $_POST['region'];
-	
-	$sql = mysql_query("SELECT * FROM regions LEFT JOIN amounts ON regions.id=amounts.id WHERE regions.id='$region'");
-		while($row=mysql_fetch_array($sql)){
+
+	global $wpdb;
+	$sql = mysqli_query($wpdb->dbh, "SELECT * FROM regions LEFT JOIN amounts ON regions.id=amounts.id WHERE regions.id='$region'");
+		while($row=mysqli_fetch_array($sql)){
 			print $row['district'];
 			print "<br />";
 			print $row['capital'];

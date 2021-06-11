@@ -102,47 +102,7 @@ get_header(); ?>
 							</div>
 						</div>
 					</section>
-					<style type="text/css">
-div#petition-popup, div#connect-popup, div#updates-popup, div#share-popup {
-	display: none;
-	position: absolute;
-	max-width: 200px;
-	padding: 10px;
-	background: #fff;
-	font-size: 12px;
-}	
-</style>
 
-<script>
-$(function() {
-  $('a#petition-trigger').hover(function() {
-    $('div#petition-popup').show();
-    }, function() {
-    $('div#petition-popup').hide();
-  });
-});
-$(function() {
-  $('a#connect-trigger').hover(function() {
-    $('div#connect-popup').show();
-    }, function() {
-    $('div#connect-popup').hide();
-  });
-});
-$(function() {
-  $('a#updates-trigger').hover(function() {
-    $('div#updates-popup').show();
-    }, function() {
-    $('div#updates-popup').hide();
-  });
-});
-$(function() {
-  $('a#share-trigger').hover(function() {
-    $('div#share-popup').show();
-    }, function() {
-    $('div#share-popup').hide();
-  });
-});
-</script>
 					<section id="action" class="column full">
 						<div id="citizen" class="grey-box">
 							<img src="wp-content/themes/where_my_money_dey/images/fist-icon.png" />
@@ -150,96 +110,47 @@ $(function() {
 							<button>
 								<a class="fancybox" id="petition-trigger" href="#petition1" title="Sign a petition">Petition</a>
 								<div id="petition-popup">
-	<h2>Petition</h2>
-	<p>Do you disagree with the impact extractive companies are having on your community, 
-		or how the royalties for your community are being used? Do something positive about it. <br /> 
-		Sign a petition to demand change.
-	</p>
-</div>
+									<h2>Petition</h2>
+									<p>Do you disagree with the impact extractive companies are having on your community, 
+										or how the royalties for your community are being used? Do something positive about it. <br /> 
+										Sign a petition to demand change.
+									</p>
+								</div>
 							</button>
 
 							<button>
 								<a id="connect-trigger" class="fancybox" href="#community1" title="Connect to your community">Connect</a>
 								<div id="connect-popup">
-	<h2>Connect</h2>
-	<p>Do you want to get involved in creating a better tomorrow for your community? 
-		Collective action will amplify your efforts. Find others in your community or wider world who also want 
-		to do something positive.
-	</p>
-</div>
+									<h2>Connect</h2>
+									<p>Do you want to get involved in creating a better tomorrow for your community? 
+										Collective action will amplify your efforts. Find others in your community or wider world who also want 
+										to do something positive.
+									</p>
+								</div>
 							</button>
 
 							<button>
 								<a id="updates-trigger" class="fancybox" href="#update1" title="Update me on this">Updates</a>
 								<div id="updates-popup">
-	<h2>Updates</h2>
-	<p>Want to be kept informed about any new developments about mining royalties relating to your community? 
-		Sign-up here for SMS or email alerts about new payments, campaigns, or mining company activities.
-	</p>
-</div>
+									<h2>Updates</h2>
+									<p>Want to be kept informed about any new developments about mining royalties relating to your community? 
+										Sign-up here for SMS or email alerts about new payments, campaigns, or mining company activities.
+									</p>
+								</div>
 							</button>
 
 							<button>
 								<a id="share-trigger" class="fancybox" href="#share1" title="Share">Share</a>
 								<div id="share-popup">
-	<h2>Share</h2>
-	<p>Why do it alone? Help spread the word about how extractive industries are impacting on your world. 
-		The more people who shine a light on the issues, the quicker everyone will understand what's important.
-	</p>
-</div>
+									<h2>Share</h2>
+									<p>Why do it alone? Help spread the word about how extractive industries are impacting on your world. 
+										The more people who shine a light on the issues, the quicker everyone will understand what's important.
+									</p>
+								</div>
 							</button>
 
-						   	<script>                          
-					                function myCall() {
-								$('#email_p').show();
-								
-								$('#submit_p').show(); 
-					                    var request = $.ajax({
-					                        url: "../actnow/index.php/subscribe/email_petitions",
-								data: "email="+document.getElementById("email_p").value,
-					                        type: "GET",            
-					                        dataType: "html"
-					                    });
-					 			
-					                    request.done(function(msg) {
-								$('#email_p').val("");
-					                        $("#mybox").html(msg);
-								$('#email_p').hide();
-								$('#submit_p').hide();          
-					                    });
-					 
-					                    request.fail(function(jqXHR, textStatus) {
-					                        alert( "Request failed: " + textStatus );
-					                    });
-					                }
-					                function myCall2() {
-								$('#email_s').show();
-								$('#message_s').show();
-								$('#submit_s').show(); 
-					                    var request = $.ajax({
-					                        url: "../actnow/index.php/subscribe/sign_petitions",
-								data: "email="+document.getElementById("email_s").value+"&message="+document.getElementById('message_s').value,
-					                        type: "GET",            
-					                        dataType: "html"
-					                    });
-					 			
-					                    request.done(function(msg) {
-								$('#email_s').val("");
-					                        $("#mybox2").html(msg);
-								$('#email_s').hide();
-								$('#message_s').hide();
-								$('#submit_s').hide();          
-					                    });
-					 
-					                    request.fail(function(jqXHR, textStatus) {
-					                        alert( "Request failed: " + textStatus );
-					                    });
-					                }
-						             
-					        </script>
-
 							<div id="petition1" style="width:400px;display: none;">
-								<p>Not happy with the amount of royalties paid to your community, or with how your royalties were used? Sign a petition to do something about it!</p><br />
+								<p>Save the wetlands!</p><br />
 									<textarea id="message_s">Your message here...</textarea>
 									<input type="text" id="email_s" placeholder="Email address">
 									<input value="sign" type="submit" onclick="myCall2()" id="submit_s">
@@ -347,18 +258,18 @@ $(function() {
 									<img src="wp-content/themes/where_my_money_dey/images/market.jpg" />
 								</div>
 							</div>
-						</div>
-					</section>
+							<section id="prompt" class="column full">
+								<div class="grey-box">
+									<h1>How have mining royalties changed <span>your</span> neighbourhood?</h1>
+									<button id="testimony-trigger" onclick="toggleForm()">Share your story</button>
+								</div>
+							</section>
+							<section id="testimony" class="column">
+								<div class="gold-box story">
+									<?php include 'form.php'; ?>
+								</div>
+							</section>
 
-					<section id="prompt" class="column full">
-						<div class="grey-box">
-							<h1>How have mining royalties changed <span>your</span> neighbourhood?</h1>
-							<button onclick="showDiv()">Share your story</button>
-						</div>
-					</section>
-					<section id="testimony" class="column">
-						<div class="gold-box story">
-							<?php include 'form.php'; ?>
 						</div>
 					</section>
 
@@ -368,7 +279,7 @@ $(function() {
 							<div id="distribution-map" class="grey-box">
 								<h1>Who Gets What</h1>
 								<div style="width:100%!important">
-									<?php map();?>
+									<?php map(); ?>
 								</div>
 							</div>
 							<div id="region-overview" class="grey-box">
@@ -411,6 +322,41 @@ $(function() {
 				</div>
 			</div><!-- #bottom-cont -->
 
+			<div id="getdata-cont">
+				<div class="site-content wrap" role="main">
+					<section>
+						<div class="trigger-headers">
+							<button id="data-trigger" onclick="toggleData();">Does the Data Lie?</button>
+						</div>
+						<div class="trigger-headers">
+							<button id="build-trigger" onclick="toggleBuild();">Get The Data</button>
+						</div>
+					</section>
+					<div id="revealdata">
+						<h2>Help Us Get It Right</h2>
+						<p>
+							All the numbers above are based on official records. But, records are not always right. Sometimes errors slip 
+							into the official record, both by mistake and deliberate distortion. Data shapes government policy and company actions, 
+							so 'dirty data' can harm our communities. The new age of 'open data' and transparent governance means that us ordinary citizens 
+							can now help ensure that errors are corrected. So, if you have evidence that any of the above numbers are wrong, please help us fix them.
+						</p>
+						<p>
+							You can find the dataset that we used <a href="http://africaopendata.org/dataset/mineral-royalties-ghana" target="_blank">here</a>.
+						</p>
+					</div>
+					
+					<div id="revealbuild">
+						<h2>Build Your Own Projects</h2>
+						<p>
+							Want to use the raw data to check the facts, or build your own projects? Where My Money Dey? is built with data that we pulled together from various 
+							government and corporate sources. Some of this data had to be 'liberated' from paper documents which we had to digitise, or from static PDFs 
+							which we had to turn into machine readable data. Everything has been uploaded onto the <a href="http://github.com/CodeForAfrica">openAFRICA.org</a> repository. You're welcome to re-use all 
+							of this information, in any way you please and without any cost, as long as you acknowledge where you got the data from.
+						</p>
+					</div>
+				</div>
+			</div> <!-- #getdata-cont --> 
+
 			<div id="footer-cont">
 				<div class="site-content wrap" role="main">
 					<section id="team">
@@ -427,7 +373,7 @@ $(function() {
 							<p class="blurb">
 								Where My Money Dey? is a <span>volunteer-built</span> project designed to improve public accountability and civic engagement 
 								through <span>active citizenry</span>. The prototype was built at Ghana's first ever <a href="http://ghana.databootcamp.org" target="_blank">d|Bootcamp</a> 
-								journalists and hacktivists in October 2012. A 2nd iteration was refined at a follow-up d|Bootcamp in May 2013 
+								that brought together journalists and hacktivists in October 2012. A 2nd iteration was refined at a follow-up d|Bootcamp in May 2013 
 								with help from the <a href="http://code-africa.org/" target="_blank">Code for Africa</a> initiative.
 							</p>
 						</div>
@@ -460,7 +406,8 @@ $(function() {
 					</section>
 
 					<section id="invitation">
-						<p><strong>Still stumped?</strong> If your grassroots community or social justice organisation doesn't have the technical capacity to use the code itself, we might still be able to help. 
+						<p><strong>Still stumped?</strong></p>
+						<p>If your grassroots community or social justice organisation doesn't have the technical capacity to use the code itself, we might still be able to help. 
 						Give us a shout to see if we can connect you with local hacktivists.</p><br />
 						<a href="mailto:info@code-africa.org"><img alt="Talk to us" src="wp-content/themes/where_my_money_dey/images/email-icon.png" /></a>
 						<a href="http://twitter.com/code4africa"><img alt="Follow us on Twitter @code4africa" src="wp-content/themes/where_my_money_dey/images/twitter-icon.png" /></a>
@@ -474,16 +421,16 @@ $(function() {
 					<section id="partners">
 						<h1>Made Possible By</h1>
 						<div class="main-partners">
-							<a href="http://africanmediainitiative.org/"><img style="height: 110px !important" src="wp-content/themes/where_my_money_dey/images/ami-logo.png" /></a>
-							<a href="http://wbi.worldbank.org/"><img src="wp-content/themes/where_my_money_dey/images/wbi-hires.png" /></a>
-							<a href="http://code-africa.org/"><img  style="height: 110px !important" src="wp-content/themes/where_my_money_dey/images/c4a.png" /></a>
+							<a href="http://africanmediainitiative.org/"><img class="ami" src="wp-content/themes/where_my_money_dey/images/ami-logo.png" /></a>
+							<a href="http://wbi.worldbank.org/"><img class="wbi" src="wp-content/themes/where_my_money_dey/images/wbi-hires.png" /></a>
+							<a href="http://code-africa.org/"><img class="c4a" src="wp-content/themes/where_my_money_dey/images/c4a.png" /></a>
 						</div>
 
 						<div class="capacity-partners">
 							<h2>Capacity Partners</h2>
 							<a href="https://groups.google.com/forum/?hl=en&fromgroups#!forum/hackshackers-ghana"><img src="wp-content/themes/where_my_money_dey/images/accra_side.gif" /></a>
+							<a href="http://openinstitute.com/"><img src="wp-content/themes/where_my_money_dey/images/oi-transparent.png" /></a>
 							<a href="http://www.icfj.org/"><img src="wp-content/themes/where_my_money_dey/images/icfj.png" /></a>
-							<a href="http://openinstitute.com/"><img src="wp-content/themes/where_my_money_dey/images/openinstitute.png" /></a>
 						</div>
 					</section>
 				</div>

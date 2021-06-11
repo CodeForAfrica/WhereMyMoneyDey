@@ -21,10 +21,116 @@
 <!-- <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'> -->
 <link rel="stylesheet" href="wp-content/themes/where_my_money_dey/custom.css" />
 
-<script>
-function showDiv() {
-   document.getElementById('testimony').style.display = "block";
-}
+<script type="text/javascript"> 
+function toggleData() {
+	var ele = document.getElementById("revealdata");
+	var text = document.getElementById("data-trigger");
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+  	}
+	else {
+		ele.style.display = "block";
+	}
+} 
+function toggleBuild() {
+	var ele = document.getElementById("revealbuild");
+	var text = document.getElementById("build-trigger");
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+  	}
+	else {
+		ele.style.display = "block";
+	}
+} 
+function toggleForm() {
+	var ele = document.getElementById("testimony");
+	var text = document.getElementById("testimony-trigger");
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+  	}
+	else {
+		ele.style.display = "block";
+	}
+} 
+
+$(function() {
+  $('a#petition-trigger').hover(function() {
+    $('div#petition-popup').show();
+    }, function() {
+    $('div#petition-popup').hide();
+  });
+});
+$(function() {
+  $('a#connect-trigger').hover(function() {
+    $('div#connect-popup').show();
+    }, function() {
+    $('div#connect-popup').hide();
+  });
+});
+$(function() {
+  $('a#updates-trigger').hover(function() {
+    $('div#updates-popup').show();
+    }, function() {
+    $('div#updates-popup').hide();
+  });
+});
+$(function() {
+  $('a#share-trigger').hover(function() {
+    $('div#share-popup').show();
+    }, function() {
+    $('div#share-popup').hide();
+  });
+});
+
+</script>
+
+<script>                          
+        function myCall() {
+	$('#email_p').show();
+	
+	$('#submit_p').show(); 
+            var request = $.ajax({
+                url: "../actnow/index.php/subscribe/email_petitions",
+	data: "email="+document.getElementById("email_p").value,
+                type: "GET",            
+                dataType: "html"
+            });
+		
+            request.done(function(msg) {
+	$('#email_p').val("");
+                $("#mybox").html(msg);
+	$('#email_p').hide();
+	$('#submit_p').hide();          
+            });
+
+            request.fail(function(jqXHR, textStatus) {
+                alert( "Request failed: " + textStatus );
+            });
+        }
+        function myCall2() {
+	$('#email_s').show();
+	$('#message_s').show();
+	$('#submit_s').show(); 
+            var request = $.ajax({
+                url: "../actnow/index.php/subscribe/sign_petitions",
+	data: "email="+document.getElementById("email_s").value+"&message="+document.getElementById('message_s').value,
+                type: "GET",            
+                dataType: "html"
+            });
+		
+            request.done(function(msg) {
+	$('#email_s').val("");
+                $("#mybox2").html(msg);
+	$('#email_s').hide();
+	$('#message_s').hide();
+	$('#submit_s').hide();          
+            });
+
+            request.fail(function(jqXHR, textStatus) {
+                alert( "Request failed: " + textStatus );
+            });
+        }
+         
 </script>
 
 	<!-- Add jQuery library -->

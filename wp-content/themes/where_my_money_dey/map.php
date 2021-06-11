@@ -24,9 +24,13 @@ function map(){
 	<style>
 		#map {
 			width: 320px;
-			height: 280px;
+			height: 250px;
 			background-color:#fafafa;
-
+		}
+		.info.legend.leaflet-control {
+		width: 70px !important;
+		float:right;
+		margin:right:-10px;
 		}
 
 		.info {
@@ -47,30 +51,60 @@ function map(){
 			text-align: left;
 			line-height: 18px;
 			color: #555;
+			font-size:0.8em;
+		}
+		.legend td{
+			min-width:20px;
 		}
 		.legend i {
-		
+			float: left;
+			border:1px solid #f3f3f3;
 			width: 18px;
 			height: 18px;
-			float: left;
-			margin-right: 8px;
+			margin-right: 1px;
 			opacity: 0.7;
+		}
+		.scale td{
+			font-size:8.8pt;
+			min-height:10px;
+		}
+		.scale tr{
+			min-height:10px;
 		}
 	</style>
 
 	<div id="map"></div>
+<table width="300px" class="scale">
+<tr style="height:10px;">
+<td style="background:#3b0000"></td>
+<td style="background:#790202"></td>
+<td style="background:#b30202"></td>
+<td style="background:#e00303"></td>
+<td style="background:#fd4a4a"></td>
+<td style="background:#fbe9e9"></td>
+</tr>
+<tr>
+<td style="background:#fff">>150k</td>
+<td style="background:#fff">125k-150k</td>
+<td style="background:#fff">100k-125k</td>
+<td style="background:#fff">50k-100k</td>
+<td style="background:#fff">25k-50k</td>
+<td style="background:#fff"><25k</td>
+</tr>
+</table>
 	<script src="<?php echo get_template_directory_uri(); ?>/leaflet.js"></script>
 		    <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
     <script src="https://gist.github.com/raw/4504864/c9ef880071f959398b7cf0b687d4f37c352ea86d/leaflet-google.js"></script>
 			<script type="text/javascript">
 		<?php
 		
+		global $wpdb;
 		print 'var amountR ={
 		"type": "FeatureCollection",                                                                      
 		"features": [';
 		$data2 = array();
-		$sql = mysql_query("SELECT * FROM regions LEFT JOIN amounts ON regions.id=amounts.id");
-		while($row=mysql_fetch_array($sql)){
+		$sql = mysqli_query($wpdb->dbh, "SELECT * FROM regions LEFT JOIN amounts ON regions.id=amounts.id");
+		while($row=mysqli_fetch_array($sql)){
 			$amountr = $year.'r';
 			$total = $row[$amountr];
 			$data2[]= '{ "type": "Feature", "id": '.$row['id'].', "properties": {"OBJECTID": '.$row['id'].', "EDNAME": "'.$row['district'].'", "TOTAL": '.$total.'}, "geometry": { "type": "Polygon", "coordinates": [['.$row['polygon'].']]}}';	
@@ -84,8 +118,8 @@ function map(){
 		"type": "FeatureCollection",                                                                      
 		"features": [';
 		$data2 = array();
-		$sql = mysql_query("SELECT * FROM regions LEFT JOIN amounts ON regions.id=amounts.id");
-		while($row=mysql_fetch_array($sql)){
+		$sql = mysqli_query($wpdb->dbh, "SELECT * FROM regions LEFT JOIN amounts ON regions.id=amounts.id");
+		while($row=mysqli_fetch_array($sql)){
 			$amountd = $year.'d';
 			$total = $row[$amountd];
 			$data2[]= '{ "type": "Feature", "id": '.$row['id'].', "properties": {"OBJECTID": '.$row['id'].', "EDNAME": "'.$row['district'].'", "TOTAL": '.$total.'}, "geometry": { "type": "Polygon", "coordinates": [['.$row['polygon'].']]}}';	
@@ -100,11 +134,11 @@ function map(){
 	
 				//var map = L.map('map').setView([6.2, -1.50], 9);
 			var map = L.map('map', {
-				center: new L.LatLng(6.2, -1.57),
+				center: new L.LatLng(6.2, -1.50),
 				dragging: false,
 				scrollWheelZoom: false,
 				touchZoom: false,
-				zoom: 9
+				zoom: 8.7
 			});
 			//var googleLayer = new L.Google('ROADMAP');
 			//map.addLayer(googleLayer);
@@ -203,6 +237,7 @@ function map(){
 			style: style,
 			onEachFeature: onEachFeature
 		});
+
 		
 		</script>
 

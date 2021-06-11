@@ -9,7 +9,7 @@
 define('IFRAME_REQUEST' , true);
 
 /** WordPress Administration Bootstrap */
-require_once('./admin.php');
+require_once( dirname( __FILE__ ) . '/admin.php' );
 
 header('Content-Type: ' . get_option('html_type') . '; charset=' . get_option('blog_charset'));
 
@@ -19,8 +19,6 @@ if ( ! current_user_can( 'edit_posts' ) || ! current_user_can( get_post_type_obj
 /**
  * Press It form handler.
  *
- * @package WordPress
- * @subpackage Press_This
  * @since 2.6.0
  *
  * @return int Post ID
@@ -34,8 +32,25 @@ function press_it() {
 	if ( !current_user_can('edit_post', $post_ID) )
 		wp_die(__('You are not allowed to edit this post.'));
 
-	$post['post_category'] = isset($_POST['post_category']) ? $_POST['post_category'] : '';
-	$post['tax_input'] = isset($_POST['tax_input']) ? $_POST['tax_input'] : '';
+	// Only accept categories if the user actually can assign
+	$category_tax = get_taxonomy( 'category' );
+	if ( current_user_can( $category_tax->cap->assign_terms ) ) {
+		$post['post_category'] = ( ! empty( $_POST['post_category'] ) ) ? $_POST['post_category'] : array();
+	}
+
+	// Only accept taxonomies if the user can actually assign
+	if ( ! empty( $_POST['tax_input'] ) ) {
+		$tax_input = $_POST['tax_input'];
+		foreach ( $tax_input as $tax => $_ti ) {
+			$tax_object = get_taxonomy( $tax );
+			if ( ! $tax_object || ! current_user_can( $tax_object->cap->assign_terms ) ) {
+				unset( $tax_input[ $tax ] );
+			}
+		}
+
+		$post['tax_input'] = $tax_input;
+	}
+
 	$post['post_title'] = isset($_POST['title']) ? $_POST['title'] : '';
 	$content = isset($_POST['content']) ? $_POST['content'] : '';
 
@@ -65,7 +80,7 @@ function press_it() {
 	// error handling for media_sideload
 	if ( is_wp_error($upload) ) {
 		wp_delete_post($post_ID);
-		wp_die($upload);
+		wp_die( esc_html( $upload->get_error_message() ) );
 	} else {
 		// Post formats
 		if ( isset( $_POST['post_format'] ) ) {
@@ -91,11 +106,11 @@ if ( isset($_REQUEST['action']) && 'post' == $_REQUEST['action'] ) {
 }
 
 // Set Variables
-$title = isset( $_GET['t'] ) ? trim( strip_tags( html_entity_decode( stripslashes( $_GET['t'] ) , ENT_QUOTES) ) ) : '';
+$title = isset( $_GET['t'] ) ? trim( strip_tags( html_entity_decode( wp_unslash( $_GET['t'] ) , ENT_QUOTES) ) ) : '';
 
 $selection = '';
 if ( !empty($_GET['s']) ) {
-	$selection = str_replace('&apos;', "'", stripslashes($_GET['s']));
+	$selection = str_replace('&apos;', "'", wp_unslash($_GET['s']));
 	$selection = trim( htmlspecialchars( html_entity_decode($selection, ENT_QUOTES) ) );
 }
 
@@ -146,7 +161,7 @@ if ( !empty($_REQUEST['ajax']) ) {
 			<h3 class="tb"><label for="tb_this_photo_description"><?php _e('Description') ?></label></h3>
 			<div class="titlediv">
 				<div class="titlewrap">
-					<input id="tb_this_photo_description" name="photo_description" class="tb_this_photo_description tbtitle text" onkeypress="if(event.keyCode==13) image_selector(this);" value="<?php echo esc_attr($title);?>"/>
+					<input id="tb_this_photo_description" name="photo_description" class="tb_this_photo_description tbtitle text" type="text" onkeypress="if(event.keyCode==13) image_selector(this);" value="<?php echo esc_attr($title);?>"/>
 				</div>
 			</div>
 
@@ -163,8 +178,6 @@ if ( !empty($_REQUEST['ajax']) ) {
 		/**
 		 * Retrieve all image URLs from given URI.
 		 *
-		 * @package WordPress
-		 * @subpackage Press_This
 		 * @since 2.6.0
 		 *
 		 * @param string $uri
@@ -297,22 +310,51 @@ die;
 
 	wp_enqueue_style( 'colors' );
 	wp_enqueue_script( 'post' );
+	add_thickbox();
 	_wp_admin_html_begin();
 ?>
 <title><?php _e('Press This') ?></title>
 <script type="text/javascript">
 //<![CDATA[
 addLoadEvent = function(func){if(typeof jQuery!="undefined")jQuery(document).ready(func);else if(typeof wpOnload!='function'){wpOnload=func;}else{var oldonload=wpOnload;wpOnload=function(){oldonload();func();}}};
-var userSettings = {'url':'<?php echo SITECOOKIEPATH; ?>','uid':'<?php if ( ! isset($current_user) ) $current_user = wp_get_current_user(); echo $current_user->ID; ?>','time':'<?php echo time() ?>'};
 var ajaxurl = '<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>', pagenow = 'press-this', isRtl = <?php echo (int) is_rtl(); ?>;
 var photostorage = false;
 //]]>
 </script>
 
 <?php
-	do_action('admin_print_styles');
-	do_action('admin_print_scripts');
-	do_action('admin_head');
+	/** This action is documented in wp-admin/admin-header.php */
+	do_action( 'admin_enqueue_scripts', 'press-this.php' );
+
+	/**
+	 * Fires when styles are printed for the Press This admin page.
+	 *
+	 * @since 3.7.0
+	 */
+	do_action( 'admin_print_styles-press-this.php' );
+
+	/** This action is documented in wp-admin/admin-header.php */
+	do_action( 'admin_print_styles' );
+
+	/**
+	 * Fires when scripts are printed for the Press This admin page.
+	 *
+	 * @since 3.7.0
+	 */
+	do_action( 'admin_print_scripts-press-this.php' );
+
+	/** This action is documented in wp-admin/admin-header.php */
+	do_action( 'admin_print_scripts' );
+
+	/**
+	 * Fires in the head tag on the Press This admin page.
+	 *
+	 * @since 3.7.0
+	 */
+	do_action( 'admin_head-press-this.php' );
+
+	/** This action is documented in wp-admin/admin-header.php */
+	do_action( 'admin_head' );
 ?>
 	<script type="text/javascript">
 	var wpActiveEditor = 'content';
@@ -414,7 +456,7 @@ var photostorage = false;
 	}
 	jQuery(document).ready(function($) {
 		//resize screen
-		window.resizeTo(740,580);
+		window.resizeTo(760,580);
 		// set button actions
 		jQuery('#photo_button').click(function() { show('photo'); return false; });
 		jQuery('#video_button').click(function() { show('video'); return false; });
@@ -477,7 +519,7 @@ $admin_body_class .= ' locale-' . sanitize_html_class( strtolower( str_replace( 
 					<p>
 						<label for="post_format"><?php _e( 'Post Format:' ); ?>
 						<select name="post_format" id="post_format">
-							<option value="0"><?php _ex( 'Standard', 'Post format' ); ?></option>
+							<option value="0"><?php echo get_post_format_string( 'standard' ); ?></option>
 						<?php foreach ( $post_formats[0] as $format ): ?>
 							<option<?php selected( $default_format, $format ); ?> value="<?php echo esc_attr( $format ); ?>"> <?php echo esc_html( get_post_format_string( $format ) ); ?></option>
 						<?php endforeach; ?>
@@ -487,81 +529,86 @@ $admin_body_class .= ' locale-' . sanitize_html_class( strtolower( str_replace( 
 				</div>
 			</div>
 
-			<?php $tax = get_taxonomy( 'category' ); ?>
-			<div id="categorydiv" class="postbox">
-				<div class="handlediv" title="<?php esc_attr_e( 'Click to toggle' ); ?>"><br /></div>
-				<h3 class="hndle"><?php _e('Categories') ?></h3>
-				<div class="inside">
-				<div id="taxonomy-category" class="categorydiv">
+			<?php
 
-					<ul id="category-tabs" class="category-tabs">
-						<li class="tabs"><a href="#category-all"><?php echo $tax->labels->all_items; ?></a></li>
-						<li class="hide-if-no-js"><a href="#category-pop"><?php _e( 'Most Used' ); ?></a></li>
-					</ul>
+			$tax = get_taxonomy( 'category' );
+			if ( current_user_can( $tax->cap->assign_terms ) ) :
+				?>
+				<div id="categorydiv" class="postbox">
+					<div class="handlediv" title="<?php esc_attr_e( 'Click to toggle' ); ?>"><br /></div>
+					<h3 class="hndle"><?php _e('Categories') ?></h3>
+					<div class="inside">
+					<div id="taxonomy-category" class="categorydiv">
 
-					<div id="category-pop" class="tabs-panel" style="display: none;">
-						<ul id="categorychecklist-pop" class="categorychecklist form-no-clear" >
-							<?php $popular_ids = wp_popular_terms_checklist( 'category' ); ?>
+						<ul id="category-tabs" class="category-tabs">
+							<li class="tabs"><a href="#category-all"><?php echo $tax->labels->all_items; ?></a></li>
+							<li class="hide-if-no-js"><a href="#category-pop"><?php _e( 'Most Used' ); ?></a></li>
 						</ul>
-					</div>
 
-					<div id="category-all" class="tabs-panel">
-						<ul id="categorychecklist" data-wp-lists="list:category" class="categorychecklist form-no-clear">
-							<?php wp_terms_checklist($post_ID, array( 'taxonomy' => 'category', 'popular_cats' => $popular_ids ) ) ?>
-						</ul>
-					</div>
-
-					<?php if ( !current_user_can($tax->cap->assign_terms) ) : ?>
-					<p><em><?php _e('You cannot modify this Taxonomy.'); ?></em></p>
-					<?php endif; ?>
-					<?php if ( current_user_can($tax->cap->edit_terms) ) : ?>
-						<div id="category-adder" class="wp-hidden-children">
-							<h4>
-								<a id="category-add-toggle" href="#category-add" class="hide-if-no-js">
-									<?php printf( __( '+ %s' ), $tax->labels->add_new_item ); ?>
-								</a>
-							</h4>
-							<p id="category-add" class="category-add wp-hidden-child">
-								<label class="screen-reader-text" for="newcategory"><?php echo $tax->labels->add_new_item; ?></label>
-								<input type="text" name="newcategory" id="newcategory" class="form-required form-input-tip" value="<?php echo esc_attr( $tax->labels->new_item_name ); ?>" aria-required="true"/>
-								<label class="screen-reader-text" for="newcategory_parent">
-									<?php echo $tax->labels->parent_item_colon; ?>
-								</label>
-								<?php wp_dropdown_categories( array( 'taxonomy' => 'category', 'hide_empty' => 0, 'name' => 'newcategory_parent', 'orderby' => 'name', 'hierarchical' => 1, 'show_option_none' => '&mdash; ' . $tax->labels->parent_item . ' &mdash;' ) ); ?>
-								<input type="button" id="category-add-submit" data-wp-lists="add:categorychecklist:category-add" class="button category-add-submit" value="<?php echo esc_attr( $tax->labels->add_new_item ); ?>" />
-								<?php wp_nonce_field( 'add-category', '_ajax_nonce-add-category', false ); ?>
-								<span id="category-ajax-response"></span>
-							</p>
+						<div id="category-pop" class="tabs-panel" style="display: none;">
+							<ul id="categorychecklist-pop" class="categorychecklist form-no-clear" >
+								<?php $popular_ids = wp_popular_terms_checklist( 'category' ); ?>
+							</ul>
 						</div>
-					<?php endif; ?>
-				</div>
-				</div>
-			</div>
 
-			<div id="tagsdiv-post_tag" class="postbox">
-				<div class="handlediv" title="<?php esc_attr_e( 'Click to toggle' ); ?>"><br /></div>
-				<h3><span><?php _e('Tags'); ?></span></h3>
-				<div class="inside">
-					<div class="tagsdiv" id="post_tag">
-						<div class="jaxtag">
-							<label class="screen-reader-text" for="newtag"><?php _e('Tags'); ?></label>
-							<input type="hidden" name="tax_input[post_tag]" class="the-tags" id="tax-input[post_tag]" value="" />
-							<div class="ajaxtag">
-								<input type="text" name="newtag[post_tag]" class="newtag form-input-tip" size="16" autocomplete="off" value="" />
-								<input type="button" class="button tagadd" value="<?php esc_attr_e('Add'); ?>" />
+						<div id="category-all" class="tabs-panel">
+							<ul id="categorychecklist" data-wp-lists="list:category" class="categorychecklist form-no-clear">
+								<?php wp_terms_checklist($post_ID, array( 'taxonomy' => 'category', 'popular_cats' => $popular_ids ) ) ?>
+							</ul>
+						</div>
+
+						<?php if ( current_user_can($tax->cap->edit_terms) ) : ?>
+							<div id="category-adder" class="wp-hidden-children">
+								<h4>
+									<a id="category-add-toggle" href="#category-add" class="hide-if-no-js">
+										<?php printf( __( '+ %s' ), $tax->labels->add_new_item ); ?>
+									</a>
+								</h4>
+								<p id="category-add" class="category-add wp-hidden-child">
+									<label class="screen-reader-text" for="newcategory"><?php echo $tax->labels->add_new_item; ?></label>
+									<input type="text" name="newcategory" id="newcategory" class="form-required form-input-tip" value="<?php echo esc_attr( $tax->labels->new_item_name ); ?>" aria-required="true"/>
+									<label class="screen-reader-text" for="newcategory_parent">
+										<?php echo $tax->labels->parent_item_colon; ?>
+									</label>
+									<?php wp_dropdown_categories( array( 'taxonomy' => 'category', 'hide_empty' => 0, 'name' => 'newcategory_parent', 'orderby' => 'name', 'hierarchical' => 1, 'show_option_none' => '&mdash; ' . $tax->labels->parent_item . ' &mdash;' ) ); ?>
+									<input type="button" id="category-add-submit" data-wp-lists="add:categorychecklist:category-add" class="button category-add-submit" value="<?php echo esc_attr( $tax->labels->add_new_item ); ?>" />
+									<?php wp_nonce_field( 'add-category', '_ajax_nonce-add-category', false ); ?>
+									<span id="category-ajax-response"></span>
+								</p>
 							</div>
-						</div>
-						<div class="tagchecklist"></div>
+						<?php endif; ?>
 					</div>
-					<p class="tagcloud-link"><a href="#titlediv" class="tagcloud-link" id="link-post_tag"><?php _e('Choose from the most used tags'); ?></a></p>
+					</div>
 				</div>
-			</div>
+			<?php endif;
+
+			$tax = get_taxonomy( 'post_tag' );
+			if ( current_user_can( $tax->cap->assign_terms ) ) :
+				?>
+				<div id="tagsdiv-post_tag" class="postbox">
+					<div class="handlediv" title="<?php esc_attr_e( 'Click to toggle' ); ?>"><br /></div>
+					<h3><span><?php _e('Tags'); ?></span></h3>
+					<div class="inside">
+						<div class="tagsdiv" id="post_tag">
+							<div class="jaxtag">
+								<label class="screen-reader-text" for="newtag"><?php _e('Tags'); ?></label>
+								<input type="hidden" name="tax_input[post_tag]" class="the-tags" id="tax-input[post_tag]" value="" />
+								<div class="ajaxtag">
+									<input type="text" name="newtag[post_tag]" class="newtag form-input-tip" size="16" autocomplete="off" value="" />
+									<input type="button" class="button tagadd" value="<?php esc_attr_e('Add'); ?>" />
+								</div>
+							</div>
+							<div class="tagchecklist"></div>
+						</div>
+						<p class="tagcloud-link"><a href="#titlediv" class="tagcloud-link" id="link-post_tag"><?php _e('Choose from the most used tags'); ?></a></p>
+					</div>
+				</div>
+			<?php endif; ?>
 		</div>
 	</div>
 	<div class="posting">
 
 		<div id="wphead">
-			<img id="header-logo" src="<?php echo esc_url( includes_url( 'images/blank.gif' ) ); ?>" alt="" width="16" height="16" />
 			<h1 id="site-heading">
 				<a href="<?php echo get_option('home'); ?>/" target="_blank">
 					<span id="site-title"><?php bloginfo('name'); ?></span>
@@ -582,11 +629,11 @@ $admin_body_class .= ' locale-' . sanitize_html_class( strtolower( str_replace( 
 
 		<div id="titlediv">
 			<div class="titlewrap">
-				<input name="title" id="title" class="text" value="<?php echo esc_attr($title);?>"/>
+				<input name="title" id="title" class="text" type="text" value="<?php echo esc_attr($title);?>"/>
 			</div>
 		</div>
 
-		<div id="waiting" style="display: none"><span class="spinner"></span> <span><?php esc_html_e( 'Loading...' ); ?></span></div>
+		<div id="waiting" style="display: none"><span class="spinner"></span> <span><?php esc_html_e( 'Loading&hellip;' ); ?></span></div>
 
 		<div id="extra-fields" style="display: none"></div>
 
@@ -646,8 +693,10 @@ $admin_body_class .= ' locale-' . sanitize_html_class( strtolower( str_replace( 
 	</tr></table>
 </div>
 <?php
-do_action('admin_footer');
-do_action('admin_print_footer_scripts');
+/** This action is documented in wp-admin/admin-footer.php */
+do_action( 'admin_footer' );
+/** This action is documented in wp-admin/admin-footer.php */
+do_action( 'admin_print_footer_scripts' );
 ?>
 <script type="text/javascript">if(typeof wpOnload=='function')wpOnload();</script>
 </body>
